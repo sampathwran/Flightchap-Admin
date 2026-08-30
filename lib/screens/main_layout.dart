@@ -11,6 +11,7 @@ import 'blog_screen.dart';
 import 'flight_offers_screen.dart';
 import 'popular_flight_routes_screen.dart';
 import 'fare_alerts_subscribers_screen.dart';
+import 'popular_vehicles_screen.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -70,6 +71,8 @@ class _MainLayoutState extends State<MainLayout> {
       return const PopularFlightRoutesScreen();
     } else if (_selectedIndex == 9) {
       return const FareAlertsSubscribersScreen();
+    } else if (_selectedIndex == 10) {
+      return const PopularVehiclesScreen();
     } else {
       return Center(child: Text('Module Under Construction', style: TextStyle(fontSize: 24, color: Colors.grey)));
     }

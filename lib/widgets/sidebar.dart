@@ -67,6 +67,7 @@ class Sidebar extends StatelessWidget {
                 _buildMenuItem(7, Icons.flight_takeoff, 'Flight Offers'),
                 _buildMenuItem(8, Icons.airplanemode_active, 'Popular Flight Routes'),
                 _buildMenuItem(9, Icons.notifications_active, 'Fare Alerts Subscribers'),
+                _buildMenuItem(10, Icons.directions_car, 'Popular Vehicles'),
                 
                 // Wishlists menu item with live badge count
                 StreamBuilder<AggregateQuerySnapshot>(
