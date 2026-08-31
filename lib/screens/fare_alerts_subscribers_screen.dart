@@ -10,7 +10,7 @@ class FareAlertsSubscribersScreen extends StatefulWidget {
 }
 
 class _FareAlertsSubscribersScreenState extends State<FareAlertsSubscribersScreen> {
-  final CollectionReference _subscribersRef = FirebaseFirestore.instance.collection('fare_alerts_subscribers');
+  final CollectionReference _subscribersRef = FirebaseFirestore.instance.collection('subscribers');
   
   Set<String> _selectedEmails = {};
   List<String> _allCurrentEmails = [];
@@ -69,7 +69,7 @@ class _FareAlertsSubscribersScreenState extends State<FareAlertsSubscribersScree
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Fare Alerts Subscribers', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text('Subscribers', style: TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         elevation: 0,
@@ -146,12 +146,16 @@ class _FareAlertsSubscribersScreenState extends State<FareAlertsSubscribersScree
                       ),
                     ),
                     const DataColumn(label: Text('Email Address', style: TextStyle(fontWeight: FontWeight.bold))),
+                    const DataColumn(label: Text('Source', style: TextStyle(fontWeight: FontWeight.bold))),
                     const DataColumn(label: Text('Subscribed Date', style: TextStyle(fontWeight: FontWeight.bold))),
                     const DataColumn(label: Text('Actions', style: TextStyle(fontWeight: FontWeight.bold))),
                   ],
                   rows: docs.map((doc) {
                     final email = doc['email']?.toString() ?? 'N/A';
                     final isSelected = _selectedEmails.contains(email);
+                    final source = (doc.data() as Map).containsKey('source') ? doc['source'].toString() : 'fare_alert';
+                    final sourceDisplay = source == 'footer_newsletter' ? 'Newsletter' : 'Fare Alerts';
+
                     
                     String dateStr = 'Unknown';
                     if (doc['createdAt'] != null) {

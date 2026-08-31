@@ -66,7 +66,7 @@ class Sidebar extends StatelessWidget {
                 _buildMenuItem(3, Icons.article_outlined, 'Travel Blog'),
                 _buildMenuItem(7, Icons.flight_takeoff, 'Flight Offers'),
                 _buildMenuItem(8, Icons.airplanemode_active, 'Popular Flight Routes'),
-                _buildMenuItem(9, Icons.notifications_active, 'Fare Alerts Subscribers'),
+                _buildMenuItem(9, Icons.notifications_active, 'Subscribers'),
                 _buildMenuItem(10, Icons.directions_car, 'Popular Vehicles'),
                 _buildMenuItem(11, Icons.airport_shuttle, 'Transfer Fleet'),
                 
