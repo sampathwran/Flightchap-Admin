@@ -193,6 +193,23 @@ class _FareAlertsSubscribersScreenState extends State<FareAlertsSubscribersScree
                         DataCell(
                           Text(email, style: const TextStyle(fontWeight: FontWeight.w500)),
                         ),
+                        DataCell(
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                            decoration: BoxDecoration(
+                              color: source == 'footer_newsletter' ? Colors.blue.shade50 : Colors.orange.shade50,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              sourceDisplay,
+                              style: TextStyle(
+                                color: source == 'footer_newsletter' ? Colors.blue.shade700 : Colors.orange.shade700,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
                         DataCell(Text(dateStr, style: TextStyle(color: Colors.grey.shade600))),
                         DataCell(
                           IconButton(
