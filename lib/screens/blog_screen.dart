@@ -54,9 +54,9 @@ class _BlogListTabState extends State<BlogListTab> {
 
   void _showAddBlogDialog([DocumentSnapshot? document]) {
     final isEditing = document != null;
-    final titleController = TextEditingController(text: isEditing ? document['title'] : '');
-    final categoryController = TextEditingController(text: isEditing ? document['category'] : 'Guides');
-    final readTimeController = TextEditingController(text: isEditing ? document['readTime'] : '5 min read');
+    final titleController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('title') ? document['title'] : '');
+    final categoryController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('category') ? document['category'] : 'Guides');
+    final readTimeController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('readTime') ? document['readTime'] : '5 min read');
     
     // SEO Fields
     final seoTitleController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('seoTitle') ? document['seoTitle'] : '');
@@ -79,7 +79,7 @@ class _BlogListTabState extends State<BlogListTab> {
       quillController = quill.QuillController.basic();
     }
 
-    String? uploadedImageUrl = isEditing ? document['image'] : null;
+    String? uploadedImageUrl = isEditing && (document.data() as Map<String, dynamic>).containsKey('image') ? document['image'] : null;
     Uint8List? pickedImageBytes;
     bool isUploading = false;
 

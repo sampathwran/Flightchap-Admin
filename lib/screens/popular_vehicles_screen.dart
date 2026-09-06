@@ -17,11 +17,11 @@ class _PopularVehiclesScreenState extends State<PopularVehiclesScreen> {
   void _showAddVehicleDialog([DocumentSnapshot? document]) {
     final bool isEditing = document != null;
     
-    final nameController = TextEditingController(text: isEditing ? document['name'] : '');
-    final descController = TextEditingController(text: isEditing ? document['desc'] : '');
-    final priceController = TextEditingController(text: isEditing ? document['price'] : '');
+    final nameController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('name') ? document['name'] : '');
+    final descController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('desc') ? document['desc'] : '');
+    final priceController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('price') ? document['price'] : '');
     
-    String? uploadedImageUrl = isEditing ? document['img'] : null;
+    String? uploadedImageUrl = isEditing && (document.data() as Map<String, dynamic>).containsKey('img') ? document['img'] : null;
     Uint8List? pickedImageBytes;
     bool isUploading = false;
 

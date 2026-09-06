@@ -15,14 +15,14 @@ class _FlightOffersScreenState extends State<FlightOffersScreen> {
   void _showAddEditOfferDialog([DocumentSnapshot? document]) {
     final bool isEdit = document != null;
     
-    final titleController = TextEditingController(text: isEdit ? document['title'] : '');
-    final badgeController = TextEditingController(text: isEdit ? document['badgeText'] : 'SPECIAL OFFER');
-    final descController = TextEditingController(text: isEdit ? document['description'] : '');
-    final btnTextController = TextEditingController(text: isEdit ? document['buttonText'] : 'Book Now');
-    final btnLinkController = TextEditingController(text: isEdit ? document['buttonLink'] : '');
+    final titleController = TextEditingController(text: isEdit && (document.data() as Map<String, dynamic>).containsKey('title') ? document['title'] : '');
+    final badgeController = TextEditingController(text: isEdit && (document.data() as Map<String, dynamic>).containsKey('badgeText') ? document['badgeText'] : 'SPECIAL OFFER');
+    final descController = TextEditingController(text: isEdit && (document.data() as Map<String, dynamic>).containsKey('description') ? document['description'] : '');
+    final btnTextController = TextEditingController(text: isEdit && (document.data() as Map<String, dynamic>).containsKey('buttonText') ? document['buttonText'] : 'Book Now');
+    final btnLinkController = TextEditingController(text: isEdit && (document.data() as Map<String, dynamic>).containsKey('buttonLink') ? document['buttonLink'] : '');
     
     // Using ValueNotifier to instantly update the live preview without calling setState on the whole screen
-    final selectedDesignId = ValueNotifier<int>(isEdit ? document['designId'] : 1);
+    final selectedDesignId = ValueNotifier<int>(isEdit && (document.data() as Map<String, dynamic>).containsKey('designId') ? document['designId'] : 1);
     final ScrollController designScrollController = ScrollController();
 
     showDialog(

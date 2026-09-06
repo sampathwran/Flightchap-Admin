@@ -19,11 +19,11 @@ class _PopularFlightRoutesScreenState extends State<PopularFlightRoutesScreen> {
   void _showAddEditRouteDialog([DocumentSnapshot? document]) {
     final bool isEditing = document != null;
     
-    final fromController = TextEditingController(text: isEditing ? document['from'] : 'Colombo');
-    final toController = TextEditingController(text: isEditing ? document['to'] : '');
-    final priceController = TextEditingController(text: isEditing ? document['price'] : '\$250');
+    final fromController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('from') ? document['from'] : 'Colombo');
+    final toController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('to') ? document['to'] : '');
+    final priceController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('price') ? document['price'] : '\$250');
     
-    String? uploadedImageUrl = isEditing ? document['img'] : null;
+    String? uploadedImageUrl = isEditing && (document.data() as Map<String, dynamic>).containsKey('img') ? document['img'] : null;
     Uint8List? pickedImageBytes;
     bool isUploading = false;
 

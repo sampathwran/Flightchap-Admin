@@ -87,10 +87,10 @@ class _CountriesTabState extends State<CountriesTab> {
   void _showAddCountryDialog([DocumentSnapshot? document]) {
     final bool isEditing = document != null;
     
-    String selectedFlag = isEditing ? document['flag'] : '🇱🇰';
-    final nameController = TextEditingController(text: isEditing ? document['name'] : '');
+    String selectedFlag = isEditing && (document.data() as Map<String, dynamic>).containsKey('flag') ? document['flag'] : '🗺️';
+    final nameController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('name') ? document['name'] : '');
     
-    String? uploadedImageUrl = isEditing ? document['image'] : null;
+    String? uploadedImageUrl = isEditing && (document.data() as Map<String, dynamic>).containsKey('image') ? document['image'] : null;
     Uint8List? pickedImageBytes;
     bool isUploading = false;
 
@@ -276,7 +276,7 @@ class _CountriesTabState extends State<CountriesTab> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(child: Text('${doc['flag']} ${doc['name']}', style: const TextStyle(fontWeight: FontWeight.bold), maxLines: 1, overflow: TextOverflow.ellipsis)),
+                            Expanded(child: Text('${(doc.data() as Map<String, dynamic>).containsKey('flag') ? doc['flag'] : ''} ${(doc.data() as Map<String, dynamic>).containsKey('name') ? doc['name'] : 'Unknown'}', style: const TextStyle(fontWeight: FontWeight.bold), maxLines: 1, overflow: TextOverflow.ellipsis)),
                             Row(
                               children: [
                                 IconButton(icon: const Icon(Icons.edit, color: Colors.blue, size: 18), onPressed: () => _showAddCountryDialog(doc)),
@@ -328,19 +328,18 @@ class _CitiesTabState extends State<CitiesTab> {
   void _showAddCityDialog([DocumentSnapshot? document]) {
     final bool isEditing = document != null;
     
-    String? selectedCountryId = isEditing ? document['countryId'] : (_countries.isNotEmpty ? _countries.first.id : null);
+    String? selectedCountryId = isEditing && (document.data() as Map<String, dynamic>).containsKey('countryId') ? document['countryId'] : (_countries.isNotEmpty ? _countries.first.id : null);
     
-    final nameController = TextEditingController(text: isEditing ? document['name'] : '');
-    final descController = TextEditingController(text: isEditing ? document['desc'] : '');
+    final nameController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('name') ? document['name'] : '');
+    final descController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('desc') ? document['desc'] : '');
     
     final startingPriceController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('startingPrice') ? document['startingPrice'] : '');
     final bestTimeController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('bestTime') ? document['bestTime'] : '');
     final tagsController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('tags') ? document['tags'] : '');
+    final ratingController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('rating') ? document['rating'] : '4.8');
+    final reviewsController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('reviews') ? document['reviews'] : '15k');
     
-    final ratingController = TextEditingController(text: isEditing ? document['rating'] : '4.8');
-    final reviewsController = TextEditingController(text: isEditing ? document['reviews'] : '15k');
-    
-    String? uploadedImageUrl = isEditing ? document['image'] : null;
+    String? uploadedImageUrl = isEditing && (document.data() as Map<String, dynamic>).containsKey('image') ? document['image'] : null;
     Uint8List? pickedImageBytes;
     bool isUploading = false;
 
@@ -530,9 +529,9 @@ class _CitiesTabState extends State<CitiesTab> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('${doc['name']} (${cName})', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16), maxLines: 1, overflow: TextOverflow.ellipsis),
+                            Text('${(doc.data() as Map<String, dynamic>).containsKey('name') ? doc['name'] : 'Unknown'} (${cName})', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16), maxLines: 1, overflow: TextOverflow.ellipsis),
                             const SizedBox(height: 4),
-                            Expanded(child: Text(doc['desc'], maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 12, color: Colors.grey))),
+                            Expanded(child: Text((doc.data() as Map<String, dynamic>).containsKey('desc') ? doc['desc'] : '', maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 12, color: Colors.grey))),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
