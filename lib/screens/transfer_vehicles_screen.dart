@@ -155,7 +155,7 @@ class _TransferVehiclesScreenState extends State<TransferVehiclesScreen> {
                         'pax': int.tryParse(paxController.text) ?? 3,
                         'luggage': int.tryParse(luggageController.text) ?? 2,
                         'img': finalImageUrl,
-                        'createdAt': isEditing ? document['createdAt'] : FieldValue.serverTimestamp(),
+                        'createdAt': isEditing ? (document.data() as Map<String, dynamic>).containsKey('createdAt') ? document['createdAt'] : FieldValue.serverTimestamp() : FieldValue.serverTimestamp(),
                       };
 
                       if (isEditing) {

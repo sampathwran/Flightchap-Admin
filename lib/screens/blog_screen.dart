@@ -65,7 +65,7 @@ class _BlogListTabState extends State<BlogListTab> {
     
     // Rich Text Editor Initialization
     quill.QuillController quillController;
-    if (isEditing && document['content'] != null && document['content'].toString().isNotEmpty) {
+    if (isEditing && (document.data() as Map<String, dynamic>).containsKey('content') && document['content'] != null && document['content'].toString().isNotEmpty) {
       try {
         final delta = HtmlToDelta().convert(document['content']);
         quillController = quill.QuillController(
@@ -268,7 +268,7 @@ class _BlogListTabState extends State<BlogListTab> {
                         'keywords': keywordsController.text,
                         'image': finalImageUrl,
                         'type': widget.blogType, // Save the specific type
-                        'createdAt': isEditing ? document['createdAt'] : FieldValue.serverTimestamp(),
+                        'createdAt': isEditing ? (document.data() as Map<String, dynamic>).containsKey('createdAt') ? document['createdAt'] : FieldValue.serverTimestamp() : FieldValue.serverTimestamp(),
                       };
                       
                       if (isEditing) {

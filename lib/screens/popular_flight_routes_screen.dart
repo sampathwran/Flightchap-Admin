@@ -19,8 +19,8 @@ class _PopularFlightRoutesScreenState extends State<PopularFlightRoutesScreen> {
   void _showAddEditRouteDialog([DocumentSnapshot? document]) {
     final bool isEditing = document != null;
     
-    final fromController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('from') ? document['from'] : 'Colombo');
-    final toController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('to') ? document['to'] : '');
+    final fromController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('from') ? ((document.data() as Map<String, dynamic>).containsKey('from') ? document['from'] : '') : 'Colombo');
+    final toController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('to') ? ((document.data() as Map<String, dynamic>).containsKey('to') ? document['to'] : '') : '');
     final priceController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('price') ? document['price'] : '\$250');
     
     String? uploadedImageUrl = isEditing && (document.data() as Map<String, dynamic>).containsKey('img') ? document['img'] : null;
@@ -211,7 +211,7 @@ class _PopularFlightRoutesScreenState extends State<PopularFlightRoutesScreen> {
       builder: (context) {
         return AlertDialog(
           title: const Text('Delete Route'),
-          content: Text('Are you sure you want to delete ${document['from']} to ${document['to']}?'),
+          content: Text('Are you sure you want to delete ${((document.data() as Map<String, dynamic>).containsKey('from') ? document['from'] : '')} to ${((document.data() as Map<String, dynamic>).containsKey('to') ? document['to'] : '')}?'),
           actions: [
             TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
             ElevatedButton(

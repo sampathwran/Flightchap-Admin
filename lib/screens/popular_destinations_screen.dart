@@ -185,7 +185,7 @@ class _CountriesTabState extends State<CountriesTab> {
                         'name': nameController.text,
                         'flag': selectedFlag,
                         'image': finalImageUrl,
-                        'createdAt': isEditing ? document['createdAt'] : FieldValue.serverTimestamp(),
+                        'createdAt': isEditing && (document.data() as Map<String, dynamic>).containsKey('createdAt') ? document['createdAt'] : FieldValue.serverTimestamp(),
                       };
 
                       if (isEditing) {
@@ -259,13 +259,14 @@ class _CountriesTabState extends State<CountriesTab> {
             itemCount: docs.length,
             itemBuilder: (context, index) {
               final doc = docs[index];
+              final data = doc.data() as Map<String, dynamic>? ?? {};
               return Card(
                 clipBehavior: Clip.antiAlias,
                 child: Column(
                   children: [
                     Expanded(
                       flex: 3,
-                      child: Image.network(doc['image'], fit: BoxFit.cover, width: double.infinity,
+                      child: Image.network(data['image'] ?? '', fit: BoxFit.cover, width: double.infinity,
                         errorBuilder: (c,e,s) => Container(color: Colors.grey[200], child: const Icon(Icons.image_not_supported)),
                       ),
                     ),
@@ -276,11 +277,11 @@ class _CountriesTabState extends State<CountriesTab> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(child: Text('${(doc.data() as Map<String, dynamic>).containsKey('flag') ? doc['flag'] : ''} ${(doc.data() as Map<String, dynamic>).containsKey('name') ? doc['name'] : 'Unknown'}', style: const TextStyle(fontWeight: FontWeight.bold), maxLines: 1, overflow: TextOverflow.ellipsis)),
+                            Expanded(child: Text('${data['flag'] ?? ''} ${data['name'] ?? 'Unknown'}', style: const TextStyle(fontWeight: FontWeight.bold), maxLines: 1, overflow: TextOverflow.ellipsis)),
                             Row(
                               children: [
                                 IconButton(icon: const Icon(Icons.edit, color: Colors.blue, size: 18), onPressed: () => _showAddCountryDialog(doc)),
-                                IconButton(icon: const Icon(Icons.delete, color: Colors.red, size: 18), onPressed: () => _deleteCountry(doc.id, doc['image'])),
+                                IconButton(icon: const Icon(Icons.delete, color: Colors.red, size: 18), onPressed: () => _deleteCountry(doc.id, data['image'] ?? '')),
                               ],
                             )
                           ],
@@ -435,7 +436,7 @@ class _CitiesTabState extends State<CitiesTab> {
                         'image': finalImageUrl,
                         'rating': ratingController.text,
                         'reviews': reviewsController.text,
-                        'createdAt': isEditing ? document['createdAt'] : FieldValue.serverTimestamp(),
+                        'createdAt': isEditing && (document.data() as Map<String, dynamic>).containsKey('createdAt') ? document['createdAt'] : FieldValue.serverTimestamp(),
                       };
                       if (isEditing) {
                         await _firestore.collection('cities').doc(document.id).update(data);
@@ -508,8 +509,9 @@ class _CitiesTabState extends State<CitiesTab> {
             itemCount: docs.length,
             itemBuilder: (context, index) {
               final doc = docs[index];
+              final data = doc.data() as Map<String, dynamic>? ?? {};
               String cName = "Unknown";
-              try { cName = _countries.firstWhere((c) => c.id == doc['countryId'])['name']; } catch(e){}
+              try { cName = _countries.firstWhere((c) => c.id == data['countryId'])['name']; } catch(e){}
               
               return Card(
                 clipBehavior: Clip.antiAlias,
@@ -518,7 +520,7 @@ class _CitiesTabState extends State<CitiesTab> {
                   children: [
                     Expanded(
                       flex: 4,
-                      child: Image.network(doc['image'], fit: BoxFit.cover, width: double.infinity,
+                      child: Image.network(data['image'] ?? '', fit: BoxFit.cover, width: double.infinity,
                         errorBuilder: (c,e,s) => Container(color: Colors.grey[200], child: const Icon(Icons.image_not_supported)),
                       ),
                     ),
@@ -529,15 +531,15 @@ class _CitiesTabState extends State<CitiesTab> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('${(doc.data() as Map<String, dynamic>).containsKey('name') ? doc['name'] : 'Unknown'} (${cName})', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16), maxLines: 1, overflow: TextOverflow.ellipsis),
+                            Text('${data['name'] ?? 'Unknown'} (${cName})', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16), maxLines: 1, overflow: TextOverflow.ellipsis),
                             const SizedBox(height: 4),
-                            Expanded(child: Text((doc.data() as Map<String, dynamic>).containsKey('desc') ? doc['desc'] : '', maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 12, color: Colors.grey))),
+                            Expanded(child: Text(data['desc'] ?? '', maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 12, color: Colors.grey))),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 IconButton(icon: const Icon(Icons.edit, color: Colors.blue, size: 20), padding: EdgeInsets.zero, constraints: const BoxConstraints(), onPressed: () => _showAddCityDialog(doc)),
                                 const SizedBox(width: 12),
-                                IconButton(icon: const Icon(Icons.delete, color: Colors.red, size: 20), padding: EdgeInsets.zero, constraints: const BoxConstraints(), onPressed: () => _deleteCity(doc.id, doc['image'])),
+                                IconButton(icon: const Icon(Icons.delete, color: Colors.red, size: 20), padding: EdgeInsets.zero, constraints: const BoxConstraints(), onPressed: () => _deleteCity(doc.id, data['image'] ?? '')),
                               ],
                             )
                           ],

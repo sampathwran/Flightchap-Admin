@@ -138,7 +138,7 @@ class _PopularVehiclesScreenState extends State<PopularVehiclesScreen> {
                         'desc': descController.text,
                         'price': priceController.text,
                         'img': finalImageUrl,
-                        'createdAt': isEditing ? document['createdAt'] : FieldValue.serverTimestamp(),
+                        'createdAt': isEditing ? (document.data() as Map<String, dynamic>).containsKey('createdAt') ? document['createdAt'] : FieldValue.serverTimestamp() : FieldValue.serverTimestamp(),
                       };
 
                       if (isEditing) {

@@ -187,7 +187,7 @@ class _FlightOffersScreenState extends State<FlightOffersScreen> {
                                 'buttonText': btnTextController.text,
                                 'buttonLink': btnLinkController.text,
                                 'designId': selectedDesignId.value,
-                                'createdAt': isEdit ? document['createdAt'] : FieldValue.serverTimestamp(),
+                                'createdAt': isEdit ? (document.data() as Map<String, dynamic>).containsKey('createdAt') ? document['createdAt'] : FieldValue.serverTimestamp() : FieldValue.serverTimestamp(),
                               };
                               
                               if (isEdit) {
