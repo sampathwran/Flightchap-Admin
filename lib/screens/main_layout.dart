@@ -30,7 +30,6 @@ class _MainLayoutState extends State<MainLayout> {
     1: '/popular-destinations',
     2: '/flash-deals',
     3: '/blog',
-    4: '/wishlist',
     6: '/customers',
     9: '/fare-alerts',
     10: '/popular-vehicles',
