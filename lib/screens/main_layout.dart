@@ -3,7 +3,6 @@ import '../widgets/sidebar.dart';
 import '../widgets/topbar.dart';
 import 'dashboard_screen.dart';
 import 'customers_screen.dart';
-import 'wishlist_screen.dart';
 import 'flash_deals_screen.dart';
 import 'popular_destinations_screen.dart';
 
@@ -107,8 +106,6 @@ class _MainLayoutState extends State<MainLayout> {
       return const FlashDealsScreen();
     } else if (_selectedIndex == 3) {
       return const BlogScreen();
-    } else if (_selectedIndex == 4) {
-      return const WishlistScreen();
     } else if (_selectedIndex == 6) {
       return const CustomersScreen();
     } else if (_selectedIndex == 9) {
