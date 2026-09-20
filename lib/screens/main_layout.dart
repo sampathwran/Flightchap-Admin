@@ -8,12 +8,11 @@ import 'flash_deals_screen.dart';
 import 'popular_destinations_screen.dart';
 
 import 'blog_screen.dart';
-import 'flight_offers_screen.dart';
-import 'popular_flight_routes_screen.dart';
 import 'fare_alerts_subscribers_screen.dart';
 import 'popular_vehicles_screen.dart';
 import 'transfer_vehicles_screen.dart';
 import 'special_offers_screen.dart';
+import '../helpers/url_helper.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -25,6 +24,42 @@ class MainLayout extends StatefulWidget {
 class _MainLayoutState extends State<MainLayout> {
   int _selectedIndex = 0;
 
+  final Map<int, String> _routes = {
+    0: '/dashboard',
+    1: '/popular-destinations',
+    2: '/flash-deals',
+    3: '/blog',
+    4: '/wishlist',
+    6: '/customers',
+    9: '/fare-alerts',
+    10: '/popular-vehicles',
+    11: '/transfer-vehicles',
+    12: '/special-offers',
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    listenToUrlChanges((newUrl) {
+      if (newUrl != '/' && newUrl.isNotEmpty) {
+        int initialIndex = _routes.entries
+            .firstWhere((entry) => entry.value == newUrl, orElse: () => const MapEntry(0, '/dashboard'))
+            .key;
+        setState(() {
+          _selectedIndex = initialIndex;
+        });
+      }
+    });
+    String currentUrl = getUrl();
+    if (currentUrl != '/' && currentUrl.isNotEmpty) {
+      int initialIndex = _routes.entries
+          .firstWhere((entry) => entry.value == currentUrl, orElse: () => const MapEntry(0, '/dashboard'))
+          .key;
+      _selectedIndex = initialIndex;
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +70,9 @@ class _MainLayoutState extends State<MainLayout> {
             onItemSelected: (index) {
               setState(() {
                 _selectedIndex = index;
+                if (_routes.containsKey(index)) {
+                  setUrl('/#' + _routes[index]!);
+                }
               });
             },
           ),
@@ -67,10 +105,6 @@ class _MainLayoutState extends State<MainLayout> {
       return const WishlistScreen();
     } else if (_selectedIndex == 6) {
       return const CustomersScreen();
-    } else if (_selectedIndex == 7) {
-      return const FlightOffersScreen();
-    } else if (_selectedIndex == 8) {
-      return const PopularFlightRoutesScreen();
     } else if (_selectedIndex == 9) {
       return const FareAlertsSubscribersScreen();
     } else if (_selectedIndex == 10) {
