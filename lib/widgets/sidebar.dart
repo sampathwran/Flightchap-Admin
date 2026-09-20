@@ -64,8 +64,6 @@ class Sidebar extends StatelessWidget {
                 _buildMenuItem(1, Icons.public, 'Popular Destinations'),
                 _buildMenuItem(2, Icons.local_fire_department_outlined, 'Flash Deals'),
                 _buildMenuItem(3, Icons.article_outlined, 'Travel Blog'),
-                _buildMenuItem(7, Icons.flight_takeoff, 'Flight Offers'),
-                _buildMenuItem(8, Icons.airplanemode_active, 'Popular Flight Routes'),
                 _buildMenuItem(9, Icons.notifications_active, 'Subscribers'),
                 _buildMenuItem(10, Icons.directions_car, 'Popular Vehicles'),
                 _buildMenuItem(11, Icons.airport_shuttle, 'Transfer Fleet'),
@@ -84,7 +82,6 @@ class Sidebar extends StatelessWidget {
                 
                 const SizedBox(height: 12),
                 _buildMenuCategory('BOOKINGS'),
-                _buildMenuItem(5, Icons.book_online_outlined, 'All Bookings'),
                 
                 // Customers menu item with live badge count
                 StreamBuilder<AggregateQuerySnapshot>(
@@ -101,7 +98,6 @@ class Sidebar extends StatelessWidget {
                 const SizedBox(height: 12),
                 _buildMenuCategory('SYSTEM'),
                 _buildMenuItem(12, Icons.local_offer_outlined, 'Special Offers'),
-                _buildMenuItem(7, Icons.settings_outlined, 'Settings'),
               ],
             ),
           ),
