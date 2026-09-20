@@ -115,11 +115,12 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(32),
       color: const Color(0xFFf0f1f7),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
           Row(
             children: [
               const Icon(Icons.manage_accounts, size: 32, color: Color(0xFF845adf)),
@@ -258,7 +259,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
             ),
           ),
           
-          const Spacer(),
+          const SizedBox(height: 64),
           ElevatedButton.icon(
             onPressed: _logout,
             icon: const Icon(Icons.logout),
@@ -272,6 +273,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
             ),
           )
         ],
+      ),
       ),
     );
   }
