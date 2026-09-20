@@ -68,18 +68,6 @@ class Sidebar extends StatelessWidget {
                 _buildMenuItem(10, Icons.directions_car, 'Popular Vehicles'),
                 _buildMenuItem(11, Icons.airport_shuttle, 'Transfer Fleet'),
                 
-                // Wishlists menu item with live badge count
-                StreamBuilder<AggregateQuerySnapshot>(
-                  stream: FirebaseFirestore.instance.collection('wishlists').count().get().asStream(),
-                  builder: (context, snapshot) {
-                    String? badgeText;
-                    if (snapshot.hasData && snapshot.data!.count != null && snapshot.data!.count! > 0) {
-                      badgeText = snapshot.data!.count.toString();
-                    }
-                    return _buildMenuItem(4, Icons.favorite_border, 'Wishlists & Saved', badge: badgeText);
-                  },
-                ),
-                
                 const SizedBox(height: 12),
                 _buildMenuCategory('BOOKINGS'),
                 
