@@ -12,6 +12,7 @@ import 'fare_alerts_subscribers_screen.dart';
 import 'popular_vehicles_screen.dart';
 import 'transfer_vehicles_screen.dart';
 import 'special_offers_screen.dart';
+import 'admin_profile_screen.dart';
 import '../helpers/url_helper.dart';
 
 class MainLayout extends StatefulWidget {
@@ -35,6 +36,7 @@ class _MainLayoutState extends State<MainLayout> {
     10: '/popular-vehicles',
     11: '/transfer-vehicles',
     12: '/special-offers',
+    99: '/profile',
   };
 
   @override
@@ -79,7 +81,12 @@ class _MainLayoutState extends State<MainLayout> {
           Expanded(
             child: Column(
               children: [
-                const Topbar(),
+                Topbar(onProfileTap: () {
+                  setState(() {
+                    _selectedIndex = 99;
+                    setUrl('/#profile');
+                  });
+                }),
                 Expanded(
                   child: _buildBody(),
                 ),
@@ -113,6 +120,8 @@ class _MainLayoutState extends State<MainLayout> {
       return const TransferVehiclesScreen();
     } else if (_selectedIndex == 12) {
       return const SpecialOffersScreen();
+    } else if (_selectedIndex == 99) {
+      return const AdminProfileScreen();
     } else {
       return Center(child: Text('Module Under Construction', style: TextStyle(fontSize: 24, color: Colors.grey)));
     }
