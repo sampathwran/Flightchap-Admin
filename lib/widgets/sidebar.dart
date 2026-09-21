@@ -33,7 +33,7 @@ class Sidebar extends StatelessWidget {
                   height: 28,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
-                      colors: [Color(0xFF845adf), Color(0xFF23b7e5)],
+                      colors: [Color(0xFF007bff), Color(0xFF23b7e5)],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),

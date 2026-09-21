@@ -123,7 +123,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
           children: [
           Row(
             children: [
-              const Icon(Icons.manage_accounts, size: 32, color: Color(0xFF845adf)),
+              const Icon(Icons.manage_accounts, size: 32, color: Color(0xFF007bff)),
               const SizedBox(width: 12),
               const Text('Admin Profile Settings', style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Color(0xFF111c43))),
             ],
@@ -180,7 +180,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                           onTap: _isLoading ? null : _pickAndUploadImage,
                           child: Container(
                             padding: const EdgeInsets.all(8),
-                            decoration: const BoxDecoration(color: Color(0xFF845adf), shape: BoxShape.circle),
+                            decoration: const BoxDecoration(color: Color(0xFF007bff), shape: BoxShape.circle),
                             child: const Icon(Icons.camera_alt, color: Colors.white, size: 18),
                           ),
                         )
@@ -219,7 +219,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                     hintText: 'Enter your name',
                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Color(0xFFe2e8f0))),
                     enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Color(0xFFe2e8f0))),
-                    focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Color(0xFF845adf))),
+                    focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Color(0xFF007bff))),
                     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                     filled: true,
                     fillColor: const Color(0xFFf8f9fa),
@@ -233,7 +233,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                     ElevatedButton(
                       onPressed: _isLoading ? null : _updateProfile,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF845adf),
+                        backgroundColor: const Color(0xFF007bff),
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

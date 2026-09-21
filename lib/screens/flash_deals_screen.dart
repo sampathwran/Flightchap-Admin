@@ -375,7 +375,7 @@ class _FlashDealsScreenState extends State<FlashDealsScreen> {
                       ElevatedButton(
                         onPressed: _isSubmitting ? null : _submitDeal,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: _editingDealId != null ? Colors.orange : const Color(0xFF845adf),
+                          backgroundColor: _editingDealId != null ? Colors.orange : const Color(0xFF007bff),
                           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
                         ),
                         child: _isSubmitting 

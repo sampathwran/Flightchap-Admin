@@ -161,7 +161,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: const ColorScheme.light(
-              primary: Color(0xFF845adf),
+              primary: Color(0xFF007bff),
               onPrimary: Colors.white,
               onSurface: Colors.black,
             ),
@@ -228,7 +228,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     value: _selectedFilter,
                     icon: const Padding(
                       padding: EdgeInsets.only(left: 8.0),
-                      child: Icon(Icons.calendar_month, color: Color(0xFF845adf), size: 20),
+                      child: Icon(Icons.calendar_month, color: Color(0xFF007bff), size: 20),
                     ),
                     style: const TextStyle(color: Color(0xFF333335), fontWeight: FontWeight.w600, fontSize: 14),
                     items: _filters.map((String value) {
@@ -250,12 +250,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
           
           // Stat Cards
           _isLoading 
-            ? const Center(child: Padding(padding: EdgeInsets.all(40), child: CircularProgressIndicator(color: Color(0xFF845adf))))
+            ? const Center(child: Padding(padding: EdgeInsets.all(40), child: CircularProgressIndicator(color: Color(0xFF007bff))))
             : Wrap(
                 spacing: 20,
                 runSpacing: 20,
                 children: [
-                  _buildStatCard('Total Visits', NumberFormat.compact().format(totalVisits), '', const Color(0xFF845adf), Icons.visibility),
+                  _buildStatCard('Total Visits', NumberFormat.compact().format(totalVisits), '', const Color(0xFF007bff), Icons.visibility),
                   _buildStatCard('Total Registered', NumberFormat.compact().format(totalRegistered), '', const Color(0xFF23b7e5), Icons.person_add),
                   _buildStatCard('Total Clicks', NumberFormat.compact().format(totalClicks), '', const Color(0xFFf5b849), Icons.touch_app),
                   _buildStatCard('Total Searches', NumberFormat.compact().format(totalSearches), '', const Color(0xFFe6533c), Icons.search),
@@ -285,7 +285,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        _buildLegendItem('Visits', const Color(0xFF845adf)),
+                        _buildLegendItem('Visits', const Color(0xFF007bff)),
                         const SizedBox(width: 16),
                         _buildLegendItem('Clicks', const Color(0xFF23b7e5)),
                       ],
@@ -295,7 +295,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 const SizedBox(height: 30),
                 Expanded(
                   child: _isLoading 
-                    ? const Center(child: CircularProgressIndicator(color: Color(0xFF845adf)))
+                    ? const Center(child: CircularProgressIndicator(color: Color(0xFF007bff)))
                     : LineChart(
                         LineChartData(
                           gridData: FlGridData(
@@ -339,13 +339,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             LineChartBarData(
                               spots: visitsSpots.isEmpty ? const [FlSpot(0,0)] : visitsSpots,
                               isCurved: true,
-                              color: const Color(0xFF845adf),
+                              color: const Color(0xFF007bff),
                               barWidth: 3,
                               isStrokeCapRound: true,
                               dotData: const FlDotData(show: false),
                               belowBarData: BarAreaData(
                                 show: true,
-                                color: const Color(0xFF845adf).withOpacity(0.1),
+                                color: const Color(0xFF007bff).withOpacity(0.1),
                               ),
                             ),
                             LineChartBarData(
