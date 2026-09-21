@@ -87,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(width: 12),
                   const Text(
-                    'HotelChap',
+                    'Flightchap',
                     style: TextStyle(color: Color(0xFF111c43), fontSize: 24, fontWeight: FontWeight.bold, letterSpacing: -0.5),
                   ),
                 ],
@@ -122,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
-                  hintText: 'admin@hotelchap.com',
+                  hintText: 'admin@Flightchap.com',
                   hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
                   contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: Color(0xFFe2e8f0))),

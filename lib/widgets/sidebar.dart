@@ -44,7 +44,7 @@ class Sidebar extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 const Text(
-                  'HotelChap',
+                  'Flightchap',
                   style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold, letterSpacing: -0.5),
                 ),
               ],

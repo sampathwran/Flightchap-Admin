@@ -25,16 +25,16 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const HotelChapAdminApp());
+  runApp(const FlightchapAdminApp());
 }
 
-class HotelChapAdminApp extends StatelessWidget {
-  const HotelChapAdminApp({super.key});
+class FlightchapAdminApp extends StatelessWidget {
+  const FlightchapAdminApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "HotelChap Admin",
+      title: "Flightchap Admin",
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
@@ -46,10 +46,10 @@ class HotelChapAdminApp extends StatelessWidget {
         Locale('en', 'US'),
       ],
       theme: ThemeData(
-        primaryColor: const Color(0xFF845adf),
+        primaryColor: const Color(0xFF007bff),
         scaffoldBackgroundColor: const Color(0xFFf0f1f7),
         fontFamily: "Segoe UI",
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF845adf)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF007bff)),
       ),
       home: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),

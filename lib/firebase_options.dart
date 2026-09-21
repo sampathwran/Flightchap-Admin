@@ -18,9 +18,9 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyDiuLmkscXaDJ2gBtOvKMnqhvcnOmWqRsM',
     appId: '1:649987888032:web:bfb040f6ef19844bf6cac5',
     messagingSenderId: '649987888032',
-    projectId: 'hotelchap-8926a',
-    authDomain: 'hotelchap-8926a.firebaseapp.com',
-    storageBucket: 'hotelchap-8926a.firebasestorage.app',
+    projectId: 'Flightchap-8926a',
+    authDomain: 'Flightchap-8926a.firebaseapp.com',
+    storageBucket: 'Flightchap-8926a.firebasestorage.app',
     measurementId: 'G-TQ9GZ94KWZ',
   );
 }

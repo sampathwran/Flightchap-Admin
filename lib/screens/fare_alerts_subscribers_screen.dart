@@ -25,7 +25,7 @@ class _FareAlertsSubscribersScreenState extends State<FareAlertsSubscribersScree
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
       path: '',
-      query: 'bcc=$bccList&subject=Exclusive Flight Deal from Hotelchap', 
+      query: 'bcc=$bccList&subject=Exclusive Flight Deal from Flightchap', 
     );
 
     try {

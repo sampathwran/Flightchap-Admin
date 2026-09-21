@@ -87,7 +87,7 @@ class _CountriesTabState extends State<CountriesTab> {
   void _showAddCountryDialog([DocumentSnapshot? document]) {
     final bool isEditing = document != null;
     
-    String selectedFlag = isEditing && (document.data() as Map<String, dynamic>).containsKey('flag') ? document['flag'] : '🗺️';
+    String selectedFlag = isEditing && (document.data() as Map<String, dynamic>).containsKey('flag') ? document['flag'] : _countryFlags[0]['flag']!;
     final nameController = TextEditingController(text: isEditing && (document.data() as Map<String, dynamic>).containsKey('name') ? document['name'] : '');
     
     String? uploadedImageUrl = isEditing && (document.data() as Map<String, dynamic>).containsKey('image') ? document['image'] : null;

@@ -1,4 +1,4 @@
-# hotelchap_admin
+# Flightchap_admin
 
 A new Flutter project.
 

@@ -404,16 +404,26 @@ class _FlashDealsScreenState extends State<FlashDealsScreen> {
                   const SizedBox(height: 16),
                   Expanded(
                     child: StreamBuilder<QuerySnapshot>(
-                      stream: FirebaseFirestore.instance.collection('flash_deals').orderBy('endTime', descending: true).snapshots(),
+                      stream: FirebaseFirestore.instance.collection('flash_deals').snapshots(),
                       builder: (context, snapshot) {
                         if (snapshot.hasError) return const Center(child: Text('Error loading deals'));
                         if (snapshot.connectionState == ConnectionState.waiting) return const Center(child: CircularProgressIndicator());
                         
-                        final docs = snapshot.data?.docs ?? [];
-                        if (docs.isEmpty) return const Center(child: Text('No flash deals found.'));
+                        
+                    final docs = snapshot.data?.docs ?? [];
+                    docs.sort((a, b) {
+                      final aTime = (a.data() as Map<String, dynamic>)['endTime'] as Timestamp?;
+                      final bTime = (b.data() as Map<String, dynamic>)['endTime'] as Timestamp?;
+                      if (aTime == null || bTime == null) return 0;
+                      return bTime.compareTo(aTime);
+                    });
+                    if (docs.isEmpty) return const Center(child: Text('No flash deals found.'));
+
 
                         return ListView.builder(
-                          itemCount: docs.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: docs.length,
                           itemBuilder: (context, index) {
                             var data = docs[index].data() as Map<String, dynamic>;
                             DateTime endTime = (data['endTime'] as Timestamp).toDate();
