@@ -191,7 +191,9 @@ class _CountriesTabState extends State<CountriesTab> {
                       if (isEditing) {
                         await _firestore.collection('countries').doc(document.id).update(data);
                       } else {
-                        await _firestore.collection('countries').add(data);
+                        print("DEBUG: Adding country...");
+                          await _firestore.collection('countries').add(data).timeout(const Duration(seconds: 10), onTimeout: () { throw Exception("Firestore timeout!"); });
+                          print("DEBUG: Added country.");
                       }
                       if (mounted) Navigator.pop(context);
                     } catch (e) {
@@ -441,7 +443,9 @@ class _CitiesTabState extends State<CitiesTab> {
                       if (isEditing) {
                         await _firestore.collection('cities').doc(document.id).update(data);
                       } else {
-                        await _firestore.collection('cities').add(data);
+                        print("DEBUG: Adding city...");
+                          await _firestore.collection('cities').add(data).timeout(const Duration(seconds: 10), onTimeout: () { throw Exception("Firestore timeout!"); });
+                          print("DEBUG: Added city.");
                       }
                       if (mounted) Navigator.pop(context);
                     } catch (e) {

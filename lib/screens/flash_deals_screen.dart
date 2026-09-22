@@ -155,11 +155,15 @@ class _FlashDealsScreenState extends State<FlashDealsScreen> {
         };
 
         if (_editingDealId != null) {
-          await FirebaseFirestore.instance.collection('flash_deals').doc(_editingDealId).update(dealData);
+          print("DEBUG: Updating flash deal...");
+            await FirebaseFirestore.instance.collection('flash_deals').doc(_editingDealId).update(dealData).timeout(const Duration(seconds: 10), onTimeout: () { throw Exception("Firestore connection timed out! Make sure rules are correct and you are online."); });
+            print("DEBUG: Updated successfully.");
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Flash Deal Updated Successfully!')));
         } else {
           dealData['createdAt'] = FieldValue.serverTimestamp();
-          await FirebaseFirestore.instance.collection('flash_deals').add(dealData);
+          print("DEBUG: Adding flash deal...");
+          await FirebaseFirestore.instance.collection('flash_deals').add(dealData).timeout(const Duration(seconds: 10), onTimeout: () { throw Exception("Firestore connection timed out! Make sure rules are correct and you are online."); });
+          print("DEBUG: Added successfully.");
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Flash Deal Scheduled Successfully!')));
         }
         
