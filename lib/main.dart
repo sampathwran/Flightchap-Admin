@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:firebase_core/firebase_core.dart";
+import "package:cloud_firestore/cloud_firestore.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
 import "package:flutter_quill/flutter_quill.dart";
 import "firebase_options.dart";
@@ -26,6 +27,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  // Disable persistence and force long-polling for web to prevent offline/locking errors
+  if (kIsWeb) {
+    FirebaseFirestore.instance.settings = const Settings(
+      persistenceEnabled: false,
+    );
+  }
   runApp(const FlightchapAdminApp());
 }
 
