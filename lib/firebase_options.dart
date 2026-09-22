@@ -15,12 +15,12 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDiuLmkscXaDJ2gBtOvKMnqhvcnOmWqRsM',
-    appId: '1:649987888032:web:bfb040f6ef19844bf6cac5',
-    messagingSenderId: '649987888032',
-    projectId: 'flightchap-8926a',
-    authDomain: 'flightchap-8926a.firebaseapp.com',
-    storageBucket: 'flightchap-8926a.firebasestorage.app',
-    measurementId: 'G-TQ9GZ94KWZ',
+    apiKey: 'AIzaSyAqKRcaw2sEC4qDlF8Sb3sVYJ45gevPJt',
+    appId: '1:821020780283:web:d1bb6a1415186b969f725e',
+    messagingSenderId: '821020780283',
+    projectId: 'flightchap-6b6f2',
+    authDomain: 'flightchap-6b6f2.firebaseapp.com',
+    storageBucket: 'flightchap-6b6f2.firebasestorage.app',
+    measurementId: 'G-RG109GPLEW',
   );
 }
