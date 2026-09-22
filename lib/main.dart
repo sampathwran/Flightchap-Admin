@@ -8,6 +8,7 @@ import "screens/login_screen.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/foundation.dart";
 import "dart:io";
+import "package:google_fonts/google_fonts.dart";
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -48,7 +49,7 @@ class FlightchapAdminApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: const Color(0xFF007bff),
         scaffoldBackgroundColor: const Color(0xFFf0f1f7),
-        fontFamily: "Segoe UI",
+        fontFamily: GoogleFonts.notoSansSinhala().fontFamily,
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF007bff)),
       ),
       onGenerateRoute: (settings) {
