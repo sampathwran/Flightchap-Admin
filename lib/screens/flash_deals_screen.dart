@@ -101,6 +101,11 @@ class _FlashDealsScreenState extends State<FlashDealsScreen> {
   }
 
   Future<void> _submitDeal() async {
+    print("DEBUG BUTTON CLICKED: _submitDeal starting...");
+    if (!_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please fill all required text fields.')));
+      return;
+    }
     bool hasImage = _selectedImageBytes != null || _imageUrlController.text.trim().isNotEmpty;
     DateTime effectiveStartTime = _selectedStartTime ?? DateTime.now();
     
