@@ -5,6 +5,7 @@ import 'dashboard_screen.dart';
 import 'customers_screen.dart';
 import 'flash_deals_screen.dart';
 import 'member_deals_screen.dart';
+import 'promo_codes_screen.dart';
 import 'popular_destinations_screen.dart';
 
 import 'blog_screen.dart';
@@ -36,6 +37,7 @@ class _MainLayoutState extends State<MainLayout> {
     11: '/transfer-vehicles',
     12: '/special-offers',
     13: '/member-deals',
+    14: '/promo-codes',
     99: '/profile',
   };
 
