@@ -109,7 +109,7 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
     bool hasImage = _selectedImageBytes != null || _imageUrlController.text.trim().isNotEmpty;
     DateTime effectiveStartTime = _selectedStartTime ?? DateTime.now();
     
-    if (_formKey.currentState!.validate() && _selectedEndTime != null && hasImage) {
+    if (_formKey.currentState!.validate()) {
       if (_selectedEndTime!.isBefore(effectiveStartTime)) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('End Time must be after Start Time.')));
         return;
