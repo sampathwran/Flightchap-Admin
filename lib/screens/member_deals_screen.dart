@@ -110,10 +110,7 @@ class _MemberDealsScreenState extends State<MemberDealsScreen> {
     DateTime effectiveStartTime = _selectedStartTime ?? DateTime.now();
     
     if (_formKey.currentState!.validate()) {
-      if (_selectedEndTime!.isBefore(effectiveStartTime)) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('End Time must be after Start Time.')));
-        return;
-      }
+      // no time validation
       
       // SHOW CONFIRMATION DIALOG
       bool? confirm = await showDialog<bool>(
@@ -155,7 +152,7 @@ class _MemberDealsScreenState extends State<MemberDealsScreen> {
           'targetUrl': _targetUrlController.text.trim(),
           'discountBadge': _discountController.text.trim(),
           'startTime': Timestamp.fromDate(effectiveStartTime),
-          'endTime': Timestamp.fromDate(_selectedEndTime!),
+          'endTime': Timestamp.fromDate(_selectedEndTime ?? DateTime.now().add(const Duration(days: 365))),
           'updatedAt': FieldValue.serverTimestamp(),
         };
 
