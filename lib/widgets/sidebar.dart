@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Sidebar extends StatelessWidget {
@@ -63,6 +63,7 @@ class Sidebar extends StatelessWidget {
                 _buildMenuCategory('APP MANAGER'),
                 _buildMenuItem(1, Icons.public, 'Popular Destinations'),
                 _buildMenuItem(2, Icons.local_fire_department_outlined, 'Flash Deals'),
+                _buildMenuItem(13, Icons.star_border, 'Member Deals'),
                 _buildMenuItem(3, Icons.article_outlined, 'Travel Blog'),
                 _buildMenuItem(9, Icons.notifications_active, 'Subscribers'),
                 _buildMenuItem(10, Icons.directions_car, 'Popular Vehicles'),

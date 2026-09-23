@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import '../widgets/sidebar.dart';
 import '../widgets/topbar.dart';
 import 'dashboard_screen.dart';
 import 'customers_screen.dart';
 import 'flash_deals_screen.dart';
+import 'member_deals_screen.dart';
 import 'popular_destinations_screen.dart';
 
 import 'blog_screen.dart';
@@ -34,6 +35,7 @@ class _MainLayoutState extends State<MainLayout> {
     10: '/popular-vehicles',
     11: '/transfer-vehicles',
     12: '/special-offers',
+    13: '/member-deals',
     99: '/profile',
   };
 
