@@ -435,7 +435,7 @@ class _FlashDealsScreenState extends State<FlashDealsScreen> {
                       itemCount: docs.length,
                           itemBuilder: (context, index) {
                             var data = docs[index].data() as Map<String, dynamic>;
-                            DateTime endTime = (data['endTime'] as Timestamp).toDate();
+                            DateTime endTime = data['endTime'] != null ? (data['endTime'] as Timestamp).toDate() : DateTime.now().add(const Duration(days: 365));
                             DateTime? startTime = data['startTime'] != null ? (data['startTime'] as Timestamp).toDate() : null;
                             
                             bool isExpired = endTime.isBefore(DateTime.now());
