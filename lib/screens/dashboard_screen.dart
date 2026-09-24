@@ -378,7 +378,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _buildStatCard(String title, String value, String percent, Color color, IconData icon, {bool isNegative = false}) {
     return Container(
-      width: 320,
+      width: 220,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
