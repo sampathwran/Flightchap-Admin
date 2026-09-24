@@ -230,11 +230,11 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
             'Manage Promo Codes',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 12),
           
           // Form Section
           Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
             child: Form(
               key: _formKey,
@@ -257,43 +257,45 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
                         )
                     ],
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
                   Row(
                     children: [
                       Expanded(
                         flex: 2,
                         child: TextFormField(
                           controller: _titleController,
-                          decoration: const InputDecoration(labelText: 'Provider / Brand Name', border: OutlineInputBorder()),
+                          decoration: const InputDecoration(labelText: 'Provider / Brand Name', border: OutlineInputBorder(), isDense: true, contentPadding: EdgeInsets.all(12)),
                           validator: (v) => v!.isEmpty ? 'Required' : null,
                         ),
                       ),
-                      const SizedBox(width: 16),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        flex: 2,
+                        child: TextFormField(
+                          controller: _descriptionController,
+                          decoration: const InputDecoration(labelText: 'Description of the offer', border: OutlineInputBorder(), isDense: true, contentPadding: EdgeInsets.all(12)),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
                       Expanded(
                         flex: 2,
                         child: TextFormField(
                           controller: _codeController,
-                          decoration: const InputDecoration(labelText: 'Promo Code (e.g. VIP50)', border: OutlineInputBorder()),
+                          decoration: const InputDecoration(labelText: 'Promo Code (e.g. VIP50)', border: OutlineInputBorder(), isDense: true, contentPadding: EdgeInsets.all(12)),
                           validator: (v) => v!.isEmpty ? 'Required' : null,
                         ),
                       ),
-                      const SizedBox(width: 16),
+                      const SizedBox(width: 12),
                       Expanded(
                         flex: 1,
                         child: TextFormField(
                           controller: _discountController,
-                          decoration: const InputDecoration(labelText: 'Discount (e.g. 50% OFF)', border: OutlineInputBorder()),
+                          decoration: const InputDecoration(labelText: 'Discount', border: OutlineInputBorder(), isDense: true, contentPadding: EdgeInsets.all(12)),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
-                  TextFormField(
-                    controller: _descriptionController,
-                    decoration: const InputDecoration(labelText: 'Description of the offer', border: OutlineInputBorder()),
-                    maxLines: 2,
-                  ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -317,7 +319,7 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
                             )
                           : TextFormField(
                               controller: _imageUrlController,
-                              decoration: const InputDecoration(labelText: 'Paste Image URL (or upload image)', border: OutlineInputBorder()),
+                              decoration: const InputDecoration(labelText: 'Paste Image URL (or upload image)', border: OutlineInputBorder(), isDense: true, contentPadding: EdgeInsets.all(12)),
                             ),
                       ),
                       const SizedBox(width: 8),
@@ -326,7 +328,7 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
                         icon: const Icon(Icons.upload_file),
                         label: const Text('Upload'),
                         style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                           backgroundColor: Colors.blueGrey,
                           foregroundColor: Colors.white,
                         ),
@@ -339,7 +341,7 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
                         child: InkWell(
                           onTap: () => _selectDateTime(context, true),
                           child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 8),
+                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
                             decoration: BoxDecoration(border: Border.all(color: Colors.green.shade400), borderRadius: BorderRadius.circular(4)),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -366,7 +368,7 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
                         child: InkWell(
                           onTap: () => _selectDateTime(context, false),
                           child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 8),
+                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
                             decoration: BoxDecoration(border: Border.all(color: Colors.red.shade400), borderRadius: BorderRadius.circular(4)),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -387,7 +389,7 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -398,7 +400,7 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
                           : const Icon(Icons.save),
                         label: Text(_isSubmitting ? 'Saving...' : (_editingDealId != null ? 'Update Deal' : 'Save Deal'), style: const TextStyle(color: Colors.white)),
                         style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                           backgroundColor: const Color(0xFF673AB7),
                         ),
                       ),
@@ -409,7 +411,7 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
             ),
           ),
           
-          const SizedBox(height: 24),
+          const SizedBox(height: 12),
           
           // List Section
           Expanded(
@@ -421,7 +423,7 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text('Promo Codes History', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
                   Expanded(
                     child: StreamBuilder<QuerySnapshot>(
                       stream: FirebaseFirestore.instance.collection('promo_codes').snapshots(),
