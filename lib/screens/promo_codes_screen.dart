@@ -288,6 +288,12 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
                     ],
                   ),
                   const SizedBox(height: 16),
+                  TextFormField(
+                    controller: _descriptionController,
+                    decoration: const InputDecoration(labelText: 'Description of the offer', border: OutlineInputBorder()),
+                    maxLines: 2,
+                  ),
+                  const SizedBox(height: 16),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -301,7 +307,7 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
                                 children: [
                                   const Icon(Icons.check_circle, color: Colors.green),
                                   const SizedBox(width: 8),
-                                  Expanded(child: Text('Image Selected: $_selectedImageName', style: const TextStyle(fontWeight: FontWeight.bold))),
+                                  Expanded(child: Text('Image Selected: ' + (_selectedImageName ?? ''), style: const TextStyle(fontWeight: FontWeight.bold))),
                                   IconButton(
                                     icon: const Icon(Icons.close, color: Colors.red),
                                     onPressed: () => setState(() => _selectedImageBytes = null),
@@ -379,7 +385,23 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
                           ),
                         ),
                       ),
-                      
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: _isSubmitting ? null : _submitDeal,
+                        icon: _isSubmitting 
+                          ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+                          : const Icon(Icons.save),
+                        label: Text(_isSubmitting ? 'Saving...' : (_editingDealId != null ? 'Update Deal' : 'Save Deal'), style: const TextStyle(color: Colors.white)),
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                          backgroundColor: const Color(0xFF673AB7),
+                        ),
+                      ),
                     ],
                   ),
                 ],
