@@ -195,7 +195,7 @@ class _BlogListTabState extends State<BlogListTab> {
                           children: [
                             quill.QuillSimpleToolbar(
                               controller: quillController,
-                              configurations: const quill.QuillSimpleToolbarConfigurations(
+                              config: const quill.QuillSimpleToolbarConfig(
                                 showAlignmentButtons: true,
                                 showJustifyAlignment: true,
                               ),
