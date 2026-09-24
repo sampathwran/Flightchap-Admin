@@ -255,11 +255,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 spacing: 20,
                 runSpacing: 20,
                 children: [
-                  _buildStatCard('Total Visits', NumberFormat.compact().format(totalVisits), '', const Color(0xFF007bff), Icons.visibility),
-                  _buildStatCard('Total Registered', NumberFormat.compact().format(totalRegistered), '', const Color(0xFF23b7e5), Icons.person_add),
-                  _buildStatCard('Total Clicks', NumberFormat.compact().format(totalClicks), '', const Color(0xFFf5b849), Icons.touch_app),
-                  _buildStatCard('Total Searches', NumberFormat.compact().format(totalSearches), '', const Color(0xFFe6533c), Icons.search),
-                  _buildStatCard('Wishlist Saves', NumberFormat.compact().format(totalWishlist), '', const Color(0xFF26bf94), Icons.favorite),
+                  _buildStatCard('Website Visits', NumberFormat.compact().format(totalVisits), '', const Color(0xFF007bff), Icons.visibility),
+                    _buildStatCard('Total Clicks', NumberFormat.compact().format(totalClicks), '', const Color(0xFFf5b849), Icons.touch_app),
+                    _buildStatCard('Registered / Subscribed', NumberFormat.compact().format(totalRegistered), '', const Color(0xFF23b7e5), Icons.person_add),
                 ],
               ),
 
@@ -380,7 +378,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _buildStatCard(String title, String value, String percent, Color color, IconData icon, {bool isNegative = false}) {
     return Container(
-      width: 180,
+      width: 320,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
