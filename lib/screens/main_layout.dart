@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../widgets/sidebar.dart';
 import '../widgets/topbar.dart';
 import 'dashboard_screen.dart';
@@ -120,6 +120,10 @@ class _MainLayoutState extends State<MainLayout> {
       return const TransferVehiclesScreen();
     } else if (_selectedIndex == 12) {
       return const SpecialOffersScreen();
+    } else if (_selectedIndex == 13) {
+      return const MemberDealsScreen();
+    } else if (_selectedIndex == 14) {
+      return const PromoCodesScreen();
     } else if (_selectedIndex == 99) {
       return const AdminProfileScreen();
     } else {
