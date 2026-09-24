@@ -218,9 +218,10 @@ class _MemberDealsScreenState extends State<MemberDealsScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24),
       color: const Color(0xFFf0f1f7),
-      child: Column(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
@@ -317,7 +318,7 @@ class _MemberDealsScreenState extends State<MemberDealsScreen> {
                         icon: const Icon(Icons.upload_file),
                         label: const Text('Upload'),
                         style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                           backgroundColor: Colors.blueGrey,
                           foregroundColor: Colors.white,
                         ),
@@ -330,7 +331,7 @@ class _MemberDealsScreenState extends State<MemberDealsScreen> {
                         child: InkWell(
                           onTap: () => _selectDateTime(context, true),
                           child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 8),
+                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
                             decoration: BoxDecoration(border: Border.all(color: Colors.green.shade400), borderRadius: BorderRadius.circular(4)),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -357,7 +358,7 @@ class _MemberDealsScreenState extends State<MemberDealsScreen> {
                         child: InkWell(
                           onTap: () => _selectDateTime(context, false),
                           child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 8),
+                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
                             decoration: BoxDecoration(border: Border.all(color: Colors.red.shade400), borderRadius: BorderRadius.circular(4)),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -387,8 +388,7 @@ class _MemberDealsScreenState extends State<MemberDealsScreen> {
           const SizedBox(height: 24),
           
           // List Section
-          Expanded(
-            child: Container(
+          Container(
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
@@ -397,8 +397,7 @@ class _MemberDealsScreenState extends State<MemberDealsScreen> {
                 children: [
                   const Text('Member Deals History', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 16),
-                  Expanded(
-                    child: StreamBuilder<QuerySnapshot>(
+                  StreamBuilder<QuerySnapshot>(
                       stream: FirebaseFirestore.instance.collection('member_deals').snapshots(),
                       builder: (context, snapshot) {
                         if (snapshot.hasError) return const Center(child: Text('Error loading deals'));
@@ -417,8 +416,8 @@ class _MemberDealsScreenState extends State<MemberDealsScreen> {
 
                         return ListView.builder(
                       shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: docs.length,
+physics: const NeverScrollableScrollPhysics(),
+itemCount: docs.length,
                           itemBuilder: (context, index) {
                             var data = docs[index].data() as Map<String, dynamic>;
                             DateTime endTime = data['endTime'] != null ? (data['endTime'] as Timestamp).toDate() : DateTime.now().add(const Duration(days: 365));
@@ -514,12 +513,11 @@ class _MemberDealsScreenState extends State<MemberDealsScreen> {
                         );
                       },
                     ),
-                  ),
                 ],
               ),
             ),
-          ),
         ],
+        ),
       ),
     );
   }

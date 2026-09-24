@@ -221,9 +221,10 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24),
       color: const Color(0xFFf0f1f7),
-      child: Column(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
@@ -414,8 +415,7 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
           const SizedBox(height: 12),
           
           // List Section
-          Expanded(
-            child: Container(
+          Container(
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
@@ -424,8 +424,7 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
                 children: [
                   const Text('Promo Codes History', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 10),
-                  Expanded(
-                    child: StreamBuilder<QuerySnapshot>(
+                  StreamBuilder<QuerySnapshot>(
                       stream: FirebaseFirestore.instance.collection('promo_codes').snapshots(),
                       builder: (context, snapshot) {
                         if (snapshot.hasError) return const Center(child: Text('Error loading deals'));
@@ -541,12 +540,11 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
                         );
                       },
                     ),
-                  ),
                 ],
               ),
             ),
-          ),
         ],
+        ),
       ),
     );
   }
