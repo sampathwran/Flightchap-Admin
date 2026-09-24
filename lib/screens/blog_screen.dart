@@ -390,7 +390,8 @@ class _BlogListTabState extends State<BlogListTab> {
                       flex: 5,
                       child: Padding(
                         padding: const EdgeInsets.all(12),
-                        child: Column(
+                        child: SingleChildScrollView(
+                          child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
@@ -402,7 +403,7 @@ class _BlogListTabState extends State<BlogListTab> {
                             Text(doc['title'], style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16), maxLines: 2, overflow: TextOverflow.ellipsis),
                             const SizedBox(height: 4),
                             Text(doc['readTime'], style: const TextStyle(color: Colors.grey, fontSize: 12)),
-                            const Spacer(),
+                            const SizedBox(height: 8),
                             if ((doc.data() as Map).containsKey('createdAt') && doc['createdAt'] != null)
                               Text(
                                 (doc['createdAt'] as Timestamp).toDate().toString().split(' ')[0],
@@ -410,6 +411,7 @@ class _BlogListTabState extends State<BlogListTab> {
                               ),
                           ],
                         ),
+                      ),
                       ),
                     ),
                   ],

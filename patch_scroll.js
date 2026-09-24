@@ -1,24 +1,77 @@
 const fs = require('fs');
-let code = fs.readFileSync('lib/screens/admin_profile_screen.dart', 'utf8');
+const files = [
+  'lib/screens/flash_deals_screen.dart',
+  'lib/screens/member_deals_screen.dart',
+  'lib/screens/special_offers_screen.dart',
+  'lib/screens/promo_codes_screen.dart'
+];
 
-// Replace the return Container child from Column to SingleChildScrollView > Column
-code = code.replace(
-  'child: Column(',
-  'child: SingleChildScrollView(\n        child: Column('
-);
+for (const file of files) {
+  if (!fs.existsSync(file)) continue;
+  let content = fs.readFileSync(file, 'utf8');
 
-// We also need to close the SingleChildScrollView at the end.
-// Look for the last '      ),'
-code = code.replace(
-  /      \),\n    \);\n  \}\n\}/,
-  '        ],\n      ),\n      ),\n    );\n  }\n}'
-);
+  // We want to wrap the top-level Column in SingleChildScrollView.
+  // We'll use regex to make it robust.
+  
+  if (content.includes('return Container(\n      padding: const EdgeInsets.all(24),\n      color: const Color(0xFFf0f1f7),\n      child: Column(')) {
+    content = content.replace(
+      'return Container(\n      padding: const EdgeInsets.all(24),\n      color: const Color(0xFFf0f1f7),\n      child: Column(',
+      'return Container(\n      color: const Color(0xFFf0f1f7),\n      child: SingleChildScrollView(\n        padding: const EdgeInsets.all(24),\n        child: Column('
+    );
+  } else if (content.includes('return Container(\n      padding: EdgeInsets.all(24),\n      color: Color(0xFFf0f1f7),\n      child: Column(')) {
+    content = content.replace(
+      'return Container(\n      padding: EdgeInsets.all(24),\n      color: Color(0xFFf0f1f7),\n      child: Column(',
+      'return Container(\n      color: const Color(0xFFf0f1f7),\n      child: SingleChildScrollView(\n        padding: const EdgeInsets.all(24),\n        child: Column('
+    );
+  }
 
-// Replace const Spacer() with SizedBox
-code = code.replace(
-  'const Spacer(),',
-  'const SizedBox(height: 64),'
-);
+  // Remove `Expanded(` around `Container` in the List section
+  content = content.replace(
+    /\/\/\s*List Section\s*Expanded\(\s*child:\s*Container\(/,
+    '// List Section\n          Container('
+  );
+  
+  // Remove `Expanded(` around `StreamBuilder`
+  content = content.replace(
+    /Expanded\(\s*child:\s*StreamBuilder<QuerySnapshot>\(/,
+    'StreamBuilder<QuerySnapshot>('
+  );
 
-// Wait, the Column closing ']' might be messy if we just replace the end. Let's do a more precise replacement for the end.
-fs.writeFileSync('patch.js', code);
+  // Since we removed two `Expanded` wrappers, we need to remove two closing `),` at the end of the file.
+  // The structure is usually:
+  //               ),
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     );
+  //   }
+  // }
+  
+  // Let's just fix the closing brackets using regex
+  // It looks like:
+  //                       },
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     );
+  
+  content = content.replace(
+    /                      \},\n                    \),\n                  \),\n                \],\n              \),\n            \),\n          \),\n        \],\n      \),\n    \);/,
+    `                      },\n                    ),\n                ],\n              ),\n            ),\n        ],\n        ),\n      ),\n    );`
+  );
+  
+  // Also account for slight variations:
+  content = content.replace(
+    /                      \},\n                    \),\n                  \),\n                \],\n              \),\n            \),\n          \),\n        \],\n      \),\n    \);/g,
+    `                      },\n                    ),\n                ],\n              ),\n            ),\n        ],\n        ),\n      ),\n    );`
+  );
+
+  fs.writeFileSync(file, content, 'utf8');
+}
+console.log('Fixed scrolling layouts');

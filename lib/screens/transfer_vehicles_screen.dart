@@ -282,19 +282,20 @@ class _TransferVehiclesScreenState extends State<TransferVehiclesScreen> {
                       flex: 4,
                       child: Padding(
                         padding: const EdgeInsets.all(12),
-                        child: Column(
+                        child: SingleChildScrollView(
+                          child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(data['name'] ?? '', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16), maxLines: 1, overflow: TextOverflow.ellipsis),
                             const SizedBox(height: 4),
                             Text(data['desc'] ?? '', style: const TextStyle(color: Colors.grey, fontSize: 12), maxLines: 2, overflow: TextOverflow.ellipsis),
-                            const Spacer(),
+                            const SizedBox(height: 8),
                             Row(
                               children: [
                                 const Icon(Icons.people, size: 16, color: Color(0xFF673AB7)),
                                 const SizedBox(width: 4),
                                 Text('${data['pax'] ?? 0} Max', style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF673AB7), fontSize: 14)),
-                                const Spacer(),
+                                const SizedBox(height: 8),
                                 const Icon(Icons.luggage, size: 16, color: Color(0xFF673AB7)),
                                 const SizedBox(width: 4),
                                 Text('${data['luggage'] ?? 0} Max', style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF673AB7), fontSize: 14)),
@@ -302,6 +303,7 @@ class _TransferVehiclesScreenState extends State<TransferVehiclesScreen> {
                             ),
                           ],
                         ),
+                      ),
                       ),
                     ),
                   ],

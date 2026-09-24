@@ -265,16 +265,18 @@ class _PopularVehiclesScreenState extends State<PopularVehiclesScreen> {
                       flex: 4,
                       child: Padding(
                         padding: const EdgeInsets.all(12),
-                        child: Column(
+                        child: SingleChildScrollView(
+                          child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(data['name'] ?? '', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16), maxLines: 1, overflow: TextOverflow.ellipsis),
                             const SizedBox(height: 4),
                             Text(data['desc'] ?? '', style: const TextStyle(color: Colors.grey, fontSize: 12), maxLines: 2, overflow: TextOverflow.ellipsis),
-                            const Spacer(),
+                            const SizedBox(height: 8),
                             Text(data['price'] ?? '', style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF673AB7), fontSize: 16)),
                           ],
                         ),
+                      ),
                       ),
                     ),
                   ],
