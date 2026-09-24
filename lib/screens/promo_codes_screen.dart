@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,6 +15,7 @@ class PromoCodesScreen extends StatefulWidget {
 class _PromoCodesScreenState extends State<PromoCodesScreen> {
   final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
+  final _descriptionController = TextEditingController();
   final _imageUrlController = TextEditingController();
   final _codeController = TextEditingController();
   final _discountController = TextEditingController(); 
@@ -75,9 +76,10 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
   void _startEditing(String id, Map<String, dynamic> data) {
     setState(() {
       _editingDealId = id;
-      _titleController.text = data['title'] ?? '';
+      _titleController.text = data['provider'] ?? '';
+      _descriptionController.text = data['description'] ?? '';
       _imageUrlController.text = data['imageUrl'] ?? '';
-      _codeController.text = data['targetUrl'] ?? '';
+      _codeController.text = data['code'] ?? '';
       _discountController.text = data['discountBadge'] ?? '';
       _selectedStartTime = data['startTime'] != null ? (data['startTime'] as Timestamp).toDate() : null;
       _selectedEndTime = data['endTime'] != null ? (data['endTime'] as Timestamp).toDate() : null;
@@ -148,6 +150,7 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
 
         final dealData = {
           'provider': _titleController.text, 'color': 'bg-blue-50 text-blue-600'.trim(),
+          'description': _descriptionController.text,
           'imageUrl': finalImageUrl,
           'code': _codeController.text.trim(),
           'discountBadge': _discountController.text.trim(),
@@ -261,7 +264,7 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
                         flex: 2,
                         child: TextFormField(
                           controller: _titleController,
-                          decoration: const InputDecoration(labelText: 'Title / Hotel Name', border: OutlineInputBorder()),
+                          decoration: const InputDecoration(labelText: 'Provider / Brand Name', border: OutlineInputBorder()),
                           validator: (v) => v!.isEmpty ? 'Required' : null,
                         ),
                       ),
@@ -270,7 +273,7 @@ class _PromoCodesScreenState extends State<PromoCodesScreen> {
                         flex: 2,
                         child: TextFormField(
                           controller: _codeController,
-                          decoration: const InputDecoration(labelText: 'Target URL (Link to open)', border: OutlineInputBorder()),
+                          decoration: const InputDecoration(labelText: 'Promo Code (e.g. VIP50)', border: OutlineInputBorder()),
                           validator: (v) => v!.isEmpty ? 'Required' : null,
                         ),
                       ),
