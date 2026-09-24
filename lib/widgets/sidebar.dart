@@ -1,5 +1,4 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Sidebar extends StatelessWidget {
   final int selectedIndex;
@@ -67,21 +66,6 @@ class Sidebar extends StatelessWidget {
                 _buildMenuItem(14, Icons.tag, 'Promo Codes'),
                 _buildMenuItem(3, Icons.article_outlined, 'Travel Blog'),
                 _buildMenuItem(9, Icons.notifications_active, 'Subscribers'),
-                const SizedBox(height: 12),
-                _buildMenuCategory('BOOKINGS'),
-                
-                // Customers menu item with live badge count
-                StreamBuilder<AggregateQuerySnapshot>(
-                  stream: FirebaseFirestore.instance.collection('users').count().get().asStream(),
-                  builder: (context, snapshot) {
-                    String? badgeText;
-                    if (snapshot.hasData && snapshot.data!.count != null && snapshot.data!.count! > 0) {
-                      badgeText = snapshot.data!.count.toString();
-                    }
-                    return _buildMenuItem(6, Icons.people_outline, 'Customers', badge: badgeText);
-                  },
-                ),
-                
                 const SizedBox(height: 12),
                                 ],
             ),

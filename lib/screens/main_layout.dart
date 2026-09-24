@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../widgets/sidebar.dart';
 import '../widgets/topbar.dart';
 import 'dashboard_screen.dart';
-import 'customers_screen.dart';
 import 'flash_deals_screen.dart';
 import 'member_deals_screen.dart';
 import 'promo_codes_screen.dart';
@@ -28,7 +27,6 @@ class _MainLayoutState extends State<MainLayout> {
     1: '/popular-destinations',
     2: '/flash-deals',
     3: '/blog',
-    6: '/customers',
     9: '/fare-alerts',
     13: '/member-deals',
     14: '/promo-codes',
@@ -104,8 +102,6 @@ class _MainLayoutState extends State<MainLayout> {
       return const FlashDealsScreen();
     } else if (_selectedIndex == 3) {
       return const BlogScreen();
-    } else if (_selectedIndex == 6) {
-      return const CustomersScreen();
     } else if (_selectedIndex == 9) {
       return const FareAlertsSubscribersScreen();
     } else if (_selectedIndex == 13) {
