@@ -67,9 +67,6 @@ class Sidebar extends StatelessWidget {
                 _buildMenuItem(14, Icons.tag, 'Promo Codes'),
                 _buildMenuItem(3, Icons.article_outlined, 'Travel Blog'),
                 _buildMenuItem(9, Icons.notifications_active, 'Subscribers'),
-                _buildMenuItem(10, Icons.directions_car, 'Popular Vehicles'),
-                _buildMenuItem(11, Icons.airport_shuttle, 'Transfer Fleet'),
-                
                 const SizedBox(height: 12),
                 _buildMenuCategory('BOOKINGS'),
                 
