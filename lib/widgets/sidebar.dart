@@ -83,8 +83,7 @@ class Sidebar extends StatelessWidget {
                 ),
                 
                 const SizedBox(height: 12),
-                _buildMenuCategory('SYSTEM'),
-                ],
+                                ],
             ),
           ),
         ],
