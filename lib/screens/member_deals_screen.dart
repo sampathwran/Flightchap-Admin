@@ -377,7 +377,18 @@ class _MemberDealsScreenState extends State<MemberDealsScreen> {
                           ),
                         ),
                       ),
+                      const SizedBox(width: 16),
                       
+                      ElevatedButton(
+                        onPressed: _isSubmitting ? null : _submitDeal,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: _editingDealId != null ? Colors.orange : const Color(0xFF007bff),
+                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        ),
+                        child: _isSubmitting 
+                          ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
+                          : Text(_editingDealId != null ? 'Update Deal' : 'Add Deal', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                      ),
                     ],
                   ),
                 ],
