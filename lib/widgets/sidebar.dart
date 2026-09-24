@@ -84,8 +84,7 @@ class Sidebar extends StatelessWidget {
                 
                 const SizedBox(height: 12),
                 _buildMenuCategory('SYSTEM'),
-                _buildMenuItem(12, Icons.local_offer_outlined, 'Special Offers'),
-              ],
+                ],
             ),
           ),
         ],

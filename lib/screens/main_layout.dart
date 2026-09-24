@@ -10,7 +10,6 @@ import 'popular_destinations_screen.dart';
 
 import 'blog_screen.dart';
 import 'fare_alerts_subscribers_screen.dart';
-import 'special_offers_screen.dart';
 import 'admin_profile_screen.dart';
 import '../helpers/url_helper.dart';
 
@@ -31,7 +30,6 @@ class _MainLayoutState extends State<MainLayout> {
     3: '/blog',
     6: '/customers',
     9: '/fare-alerts',
-    12: '/special-offers',
     13: '/member-deals',
     14: '/promo-codes',
     99: '/profile',
@@ -110,8 +108,6 @@ class _MainLayoutState extends State<MainLayout> {
       return const CustomersScreen();
     } else if (_selectedIndex == 9) {
       return const FareAlertsSubscribersScreen();
-    } else if (_selectedIndex == 12) {
-      return const SpecialOffersScreen();
     } else if (_selectedIndex == 13) {
       return const MemberDealsScreen();
     } else if (_selectedIndex == 14) {
