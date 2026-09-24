@@ -142,7 +142,7 @@ class _MemberDealsScreenState extends State<MemberDealsScreen> {
         
         if (_selectedImageBytes != null) {
           final storageRef = FirebaseStorage.instance.ref().child('member_deals/${DateTime.now().millisecondsSinceEpoch}_${_selectedImageName}');
-          final uploadTask = await storageRef.putData(_selectedImageBytes!);
+          final uploadTask = await storageRef.putData(_selectedImageBytes!).timeout(const Duration(seconds: 10), onTimeout: () { throw Exception("Image upload timed out! Check Firebase Storage rules."); });
           finalImageUrl = await uploadTask.ref.getDownloadURL();
         }
 
