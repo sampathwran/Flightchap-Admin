@@ -1,15 +1,23 @@
 const fs = require('fs');
 
-let code = fs.readFileSync('lib/screens/customers_screen.dart', 'utf8');
+// 1. Remove from sidebar.dart
+let sidebarPath = 'lib/widgets/sidebar.dart';
+let sidebarContent = fs.readFileSync(sidebarPath, 'utf8');
 
-if (!code.includes("import '../site_state.dart';")) {
-    code = code.replace("import 'package:flutter/material.dart';", "import 'package:flutter/material.dart';\nimport '../site_state.dart';");
-}
-
-code = code.replace(
-    /\.collection\('users'\)\s*\.snapshots\(\)/g,
-    ".collection('users').where('target_website', isEqualTo: SiteState.activeSite.value).snapshots()"
+sidebarContent = sidebarContent.replace(
+  /                  const SizedBox\(height: 12\),\r?\n                  _buildMenuCategory\('BOOKINGS'\),\r?\n                  \r?\n                  \/\/ Customers menu item with live badge count\r?\n                  StreamBuilder<AggregateQuerySnapshot>\([\s\S]*?return _buildMenuItem\(6, Icons\.people_outline, 'Customers', badge: badgeText\);\r?\n                    \},\r?\n                  \),\r?\n                  \r?\n                  const SizedBox\(height: 12\),\r?\n/g,
+  ''
 );
 
-fs.writeFileSync('lib/screens/customers_screen.dart', code);
-console.log("Patched customers_screen.dart");
+fs.writeFileSync(sidebarPath, sidebarContent, 'utf8');
+
+// 2. Remove from main_layout.dart
+let layoutPath = 'lib/screens/main_layout.dart';
+let layoutContent = fs.readFileSync(layoutPath, 'utf8');
+
+layoutContent = layoutContent.replace(/import 'customers_screen\.dart';\r?\n/g, '');
+layoutContent = layoutContent.replace(/\s*6:\s*'\/customers',\r?\n/g, '\n');
+layoutContent = layoutContent.replace(/\s*\} else if \(_selectedIndex == 6\) \{\r?\n\s*return const CustomersScreen\(\);\r?\n/g, '\n');
+
+fs.writeFileSync(layoutPath, layoutContent, 'utf8');
+console.log('Removed BOOKINGS and Customers menu from admin panel');

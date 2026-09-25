@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class Sidebar extends StatelessWidget {
   final int selectedIndex;
@@ -66,6 +66,7 @@ class Sidebar extends StatelessWidget {
                 _buildMenuItem(14, Icons.tag, 'Promo Codes'),
                 _buildMenuItem(3, Icons.article_outlined, 'Travel Blog'),
                 _buildMenuItem(9, Icons.notifications_active, 'Subscribers'),
+                _buildMenuItem(15, Icons.link, 'Social Links'),
                 const SizedBox(height: 12),
                                 ],
             ),
@@ -115,3 +116,4 @@ class Sidebar extends StatelessWidget {
     );
   }
 }
+

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'social_media_screen.dart';
 import '../widgets/sidebar.dart';
 import '../widgets/topbar.dart';
 import 'dashboard_screen.dart';
@@ -30,6 +31,7 @@ class _MainLayoutState extends State<MainLayout> {
     9: '/fare-alerts',
     13: '/member-deals',
     14: '/promo-codes',
+    15: '/social-links',
     99: '/profile',
   };
 
@@ -108,6 +110,8 @@ class _MainLayoutState extends State<MainLayout> {
       return const MemberDealsScreen();
     } else if (_selectedIndex == 14) {
       return const PromoCodesScreen();
+    } else if (_selectedIndex == 15) {
+      return const SocialMediaScreen();
     } else if (_selectedIndex == 99) {
       return const AdminProfileScreen();
     } else {
@@ -115,3 +119,8 @@ class _MainLayoutState extends State<MainLayout> {
     }
   }
 }
+
+
+
+
+
